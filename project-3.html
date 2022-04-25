@@ -11,3 +11,72 @@ Requirements:
 -When your form submits, it'll disappear (which you don't want) and the reason this is happening is because the "form" is trying to actually submit data to a backend somewhere, but there's no backend, you just want to use the form submission to trigger your JavaScript function. To solve this, Google "html prevent form submit" and that should point you in the right direction.
 -Send me the project for review and get started on the next project.
 -->
+
+<!-- three tries guess, computer picks betw 1-100, each try say if too HI/LO,
+html form for input field, submit button to form, use onsubmit
+html prevent form submit -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"> <!-- BOOTSTRAP -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> <!-- JAVASCRIPT -->
+</head>
+
+<body>
+  <div class="container-fluid text-center">
+    <div class="row">
+      <h5>Guess the number between 1 and 100 in three tries or less.</h5>
+    </div>
+    <div class="row">
+      <form id="form">
+        <label for="guess">Enter your guess:</label><br>
+        <input type="text" id="guess" name="guess"><br>
+        <input type="submit" id="submit" onsubmit="checkGuess()">
+      </form>
+    </div>
+    <div class="row feedback">
+      <p id="guessHistory"></p>
+      <p id="lowOrHi"></p>
+      <p id="results"></p>
+    </div>
+  </div>
+
+  <script>
+    function checkGuess() {
+      const randomNum = Math.floor(Math.random() * 100) + 1;
+      const guessCount = 0;
+      const userGuess = document.getElementById("guess").value;
+      const guessHistory = document.getElementById("guessHistory");
+      const loworHi = document.getElementById("lowOrHi");
+      const result = document.getElementById("results");
+
+      if (guessCount === 0) {
+        guessHistory.textContent = `Guesses: `;
+      }
+      guessHistory.textContent += `${userGuess} `;
+
+      if (userGuess === randomNum) {
+        result.textContent = `You got it! The number was ${randomNum}.`;
+        lowOrHi.textContent = "";
+      } else if (guessCount === 3) {
+        result.textContent = "You guessed 3 out of 3 times."
+      } else {
+        result.textContent = 'Try again.';
+        if (userGuess < randomNum) {
+          lowOrHi.textContent = `${userGuess} is too low.`;
+        } else if (userGuess > randomNum) {
+          lowOrHi.textContent = `${userGuess} is too high.`;
+        }
+      }
+
+      guessCount++;
+      userGuess = "";
+    }
+  </script>
+</body>
+
+</html>
