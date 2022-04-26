@@ -50,12 +50,12 @@ Requirements:
 
   <script>
     let guessCount = 1;
+    let randomNum = Math.floor(Math.random() * 100) + 1; /* Outside function to avoid generating new random in each function call */
 
     function checkGuess() {
-      let randomNum = Math.floor(Math.random() * 100) + 1;
       const guessField = document.getElementById("guess");
       const submit = document.getElementById("submit");
-      const guess = Number(document.getElementById("guess").value);
+      let guess = Number(document.getElementById("guess").value);
       const prevGuesses = document.getElementById("prevGuesses");
       const compare = document.getElementById("compare");
       const result = document.getElementById("results");
