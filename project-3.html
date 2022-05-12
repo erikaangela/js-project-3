@@ -30,14 +30,14 @@ Requirements:
 
   <div class="container-fluid text-center">
     <div class="row">
-      <h5>Guess the number between 1 and 100&mdash;you have 3 tries.</h5>
+      <h5 class="display-6">Guess the number between 1 and 100&mdash;you have three tries.</h5>
     </div>
 
     <div class="row">
       <form id="form" onsubmit="event.preventDefault(); checkGuess()">
-        <label for="guess">Enter your guess:</label><br>
-        <input type="text" id="guess" name="guess"><br>
-        <input type="submit" id="submit">
+        <label for="guess" class="lead">Enter your guess:</label><br>
+        <input type="text" id="guess" name="guess" class="mt-1"><br>
+        <input type="submit" class="btn btn-primary mt-1" id="submit">
       </form>
     </div>
 
